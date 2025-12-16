@@ -49,14 +49,14 @@ static	int	init_list(struct s_list **list, struct s_input *input)
 	return (SUCCESS);
 }
 
-int	print_list(struct s_list *list)
+static	int	print_list(struct s_list *list)
 {
 	struct  s_node	*tmp;
 	int				i;
 
 	tmp = NULL;
-	i = 0;
-	if (!list->negatives || !list->positives)
+	i = 1;
+	if (!list->negatives && !list->positives)
 		return (FAILURE);
 	printf("NEGATIVOS:\n");
 	tmp = list->negatives;
@@ -66,7 +66,7 @@ int	print_list(struct s_list *list)
 		i++;
 		tmp = tmp->next;
 	}
-	i = 0;
+	i = 1;
 	printf("POSITIVOS:\n");
 	tmp = list->positives;
 	while (tmp)
@@ -109,7 +109,7 @@ int program(struct s_input *input)
 		pthread_join(list->threads_id[i], NULL);
 	if (thread->list->state == FAILURE)
 		return (free_list(&list), free(thread), 
-				fprintf(stderr, "Error al en los hilos\n"), FAILURE);
+				fprintf(stderr, "Error en los hilos\n"), FAILURE);
 	if (!print_list(thread->list))
 		return (free_list(&list), free(thread), 
 				fprintf(stderr, "Error al printear las listas\n"), FAILURE);
