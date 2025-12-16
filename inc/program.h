@@ -17,6 +17,7 @@
     struct s_node       *negatives;
     pthread_mutex_t		mtx_positives;
     pthread_mutex_t		mtx_negatives;
+    pthread_mutex_t		mtx_state;
  };
 
  struct s_thread
