@@ -49,7 +49,7 @@ int	main(int argc, char *argv[])
 		return (fprintf(stderr, "Argumentos incorrectos\n"), fprintf(stdout, USAGE), FAILURE);
 	if (!init_input(&input, argv))
 		return (fprintf(stderr, "Error al inicializar estructura input\n"), FAILURE);
-	printf("Thread_num:%i Num_per_thread:%i", input->thread_num, input->num_per_thread);
+	printf("Thread_num: %i Num_per_thread: %i Total_num: %i\n\n", input->thread_num, input->num_per_thread, input->thread_num * input->num_per_thread);
 	if (!program(input))
 		return (free(input), FAILURE);
 	free(input);

@@ -111,7 +111,7 @@ void	*start_routine(void *arg)
 		if (!insert_node(&thread->list, &seed))
 		{
 			pthread_mutex_lock(&thread->list->mtx_state);
-			thread->list->state == FAILURE;
+			thread->list->state = FAILURE;
 			pthread_mutex_unlock(&thread->list->mtx_state);
 			return (fprintf(stderr, "Error al insertar un nodo\n"), (void *)NULL);
 		}
